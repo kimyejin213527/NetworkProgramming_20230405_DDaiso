@@ -32,3 +32,5 @@
       1. ProductListView
    4. urls
       1. product:list
+   5. templates/product
+      1. product_list.html
