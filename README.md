@@ -45,4 +45,8 @@
             2. product_list.html
             ```html
             <a href="{% url 'product:detail' pk=product.id %}">{{ product.name }}</a>
-```
+            ```
+            
+      5. c:Add Product
+         1. views
+            1. prodcutCreateView
