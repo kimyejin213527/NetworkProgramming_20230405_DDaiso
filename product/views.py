@@ -8,6 +8,6 @@ class ProductListView(ListView):
     model = Product
     #'product_list.html',{'product_list':product.objects.all()}
 
-    class ProductDetailView(DetailView):
-        model = Product
-        #'Product_detail.html',{'Product' : Product.object.get(pk = pk)}
+class ProductDetailView(DetailView):
+    model = Product
+    #'Product_detail.html',{'Product' : Product.object.get(pk = pk)}
