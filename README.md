@@ -75,3 +75,5 @@
    7. D: productDeleteView
       1. views
          1. productDeleteView
+      2. urls
+         1. product:remove
