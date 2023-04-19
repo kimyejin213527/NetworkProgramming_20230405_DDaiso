@@ -26,4 +26,5 @@ class ProductUpdateView(UpdateView):
     model = Product
     fields = ['name', 'price'] # '__all__'
     template_name_suffix = '_update' # product_form.html -> product_update.html 뒤에 달리는 프리픽스는 앞에 뒤에는 서픽스
-    success_url = reverse_lazy('product:list')
+    #일반적으로 성공하면 detail로 간다
+    #success_url = reverse_lazy('product:list') #수정 성공하면, 이동할 url 이름
