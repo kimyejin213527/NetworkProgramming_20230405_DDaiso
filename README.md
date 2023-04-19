@@ -25,36 +25,44 @@
             - models -> DB를 만들기 위한 py 만들기
          4. python manage.py migrate product
             - DB를 만들기 위한 -> DB 테이블 만들기
+         5. \_\_str\_\_()
+            - 클래스를 보기 쉽게 하는 함수
    2. admin
       1. Product
-      2. python manage.py createsuperuser 
-   3. R : Product List
+      2. python manage.py createsuperuser
+      
+   3. R: Product List
       1. views
          1. ProductListView
       2. urls
-         1. product:list
+         1. product : list
       3. templates/product
          1. product_list.html
-      4. R : Product Detail
-         1. views
-            1. ProductDetailView
-         2. urls
-            1. product:detail
-         3. templates/product
-            1. product_detail.html
-            2. product_list.html
-            ```html
-            <a href="{% url 'product:detail' pk=product.id %}">{{ product.name }}</a>
-            ```
-            
-   4. C:Add Product
+   
+   4. R: Product Detail
       1. views
-         1. prodcutCreateView
+         1. ProductDetailView
       2. urls
-         1. product:add
+         1. product : detail
       3. templates/product
-         1. product_create.html
+         1. product_detail.html
          2. product_list.html
          ```html
-         <a href={% url 'product:add' %}>Add Product</a>
+         <a href="{% url 'product:detail' pk=product.id %}">{{ product.name }}</a>
          ```
+   5. C: Aadd Product 
+      1. views
+         1. ProductCreateView
+      2. urls
+         1. product : add
+      3. templates
+         1. product_creat.html
+         2. product_list.html
+         ```html
+         <a href="{% url 'product:add' %}">Add Product</a>
+         ```
+         
+   6. U: ProductUpdateView
+      1. views
+         1. ProductUpdateView
+         
