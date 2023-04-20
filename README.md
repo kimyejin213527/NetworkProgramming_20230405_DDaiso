@@ -83,3 +83,11 @@
    8. 💫💥🌟 기능 완성 🌟💥💫
 4. DDaiso/urls
    1. / -> home(ProductListView.as_view())
+5. feaure/cloudtype
+   1. Local Terminal
+      1. pip freeze > requirements.txt
+   2. Source
+      1. ALLOWED_HOSTS = ['*'] in settings.py
+   3. Server Terminal
+      1. python manage.py makemigerations
+      2. python manage.py migrate
