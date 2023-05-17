@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upate Product</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Update Product{% endblock %}
+
+{% block content %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Edit">
+    <input type="submit" value="Edit" class="btn btn-primary">
 </form>
-</body>
-</html>
+{% endblock %}
