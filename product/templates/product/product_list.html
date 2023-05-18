@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title%}Product List{% endblock %}
+{% block title %} Product List {% endblock %}
 
-{% block content%}
-<!-- product_list : Product.objects.all() : DB에 있는 모든 Product 꺼내서 변수에 넣어주자-->
+{% block content %}
+<!-- product_list: Product.objects.all(): DB에 있는 모든 Product 꺼내서 변수에 넣어줌 -->
 <a href="{% url 'product:add' %}" class="btn btn-success">Add Product</a>
 <table class="table">
     <thead>
@@ -15,17 +15,58 @@
     </tr>
     </thead>
     <tbody>
-
         {% for product in product_list %}
         <tr>
             <td class="align-middle">{{ forloop.counter }}</td>
             <td class="align-middle"><a href="{% url 'product:detail' pk=product.id %}">{{ product.name }}</a></td>
             <td class="align-middle">{{ product.price }}원</td>
             <td class="align-middle"><a href="{% url 'product:edit' pk=product.id %}" class="btn btn-primary">EDIT</a></td>
-            <td class="align-middle"><a href="{% url 'product:remove' pk=product.id %}"class="btn btn-danger">REMOVE</a></td>
+            <td class="align-middle"><a href="{% url 'product:remove' pk=product.id %}" class="btn btn-danger">REMOVE</a></td>
         </tr>
-    {% endfor %}
-
+        {% endfor %}
     </tbody>
 </table>
+{% endblock %}
+
+{% block pagination %}
+    {% if is_paginated %}
+        <ul class="pagination justify-content-center">
+            <!-- 이전 -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="page-link">이전</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">이전</a>
+                </li>
+            {% endif %}
+
+            <!-- page -->
+            {% for object in page_obj.paginator.page_range %}
+                {% if page_obj.number == forloop.counter %}
+                    <li class="page-item disabled">
+                    <!-- URL/?page=숫자 -->
+                        <a href="{{ request.path }}?page={{ forloop.counter }}" class="page-link">{{ forloop.counter }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                    <!-- URL/?page=숫자 -->
+                        <a href="{{ request.path }}?page={{ forloop.counter }}" class="page-link">{{ forloop.counter }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- 다음 -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="page-link">다음</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">다음</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
 {% endblock %}

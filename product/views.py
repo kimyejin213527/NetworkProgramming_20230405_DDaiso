@@ -11,6 +11,7 @@ class ProductListView(ListView):
     model = Product
     # 보여줄 거는 프로덕트다.
     # 'product_list', {'product_list' : Product.object.all() }
+    paginate_by = 2
 
 class ProductDetailView(DetailView):
     model = Product
