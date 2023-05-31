@@ -13,6 +13,11 @@ class ProductListView(ListView):
     # 'product_list', {'product_list' : Product.object.all() }
     paginate_by = 2
 
+def list_product(request):
+    product_list = Product.objects.all() #DB에 있는 product 전체 가져오자
+    context = {'product_list':product_list} #product_list라는 키로 놓자
+    return render(request, 'product/product_list.html', context) #product/product_list.html에 보내자
+
 class ProductDetailView(DetailView):
     model = Product
     # 'product_detail.html', { 'product' : Product.object.get(pk=pk) } pk -> primary key
