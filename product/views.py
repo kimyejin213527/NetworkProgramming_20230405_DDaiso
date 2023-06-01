@@ -22,6 +22,12 @@ class ProductDetailView(DetailView):
     model = Product
     # 'product_detail.html', { 'product' : Product.object.get(pk=pk) } pk -> primary key
 
+def detail_product(request, pk):
+    product = Product.objects.get(pk=pk)    #DB에서 pk가 pk인 product 하나 가져오자
+    context = {'product:product'}
+    return render (request,'product/product_detail.html', context)  #product_detail.html에게 product라는 변수로 product를 보내자
+
+
 class ProductCreateView(CreateView):
     model = Product
     fields = ['name', 'price']      # '__all__' 으로도 할 수 있다.
