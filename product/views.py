@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from product.forms import ProductCreationForm
+from product.forms import ProductCreationForm, ProductChangeForm
 from product.models import Product
 
 
@@ -52,6 +52,20 @@ class ProductUpdateView(UpdateView):
     template_name_suffix = '_update' # product_form.html -> product_update.html 뒤에 달리는 프리픽스는 앞에 뒤에는 서픽스
     #일반적으로 성공하면 detail로 간다
     #success_url = reverse_lazy('product:list') #수정 성공하면, 이동할 url 이름
+
+def update_product(request,pk):
+    if request.method == 'POST': #사용자가 입력하고 submit 버튼 눌렀을 때
+        form = ProductChangeForm(request.POST)  #form에 있는 내용 가져오자
+        if form.is_valid(): #form 검사하자
+            selected_product = Product.object.get(pk=pk)      #pk로 Product에서 하나 꺼내자
+            selected_product.name = form.cleaned_data.get('name')      #입력한 내용으로 product 수정하자
+            selected_product.price = form.cleaned_data.get('price')
+            selected_product.save()     #product 저장하자
+            return redirect('product:detail2', pk=pk)
+    else:   #처음에 선택한 내용을 폼으로 보여주자
+        selected_product = Product.objects.get(pk=pk)    #pk로 product에서 하나 꺼내자
+        form = ProductChangeForm(instance=selected_product)    #form에 표시하자
+    return render(request,'product/product_update.html',{'form':form})
 
 class ProductDeleteView(DeleteView):
     model = Product
