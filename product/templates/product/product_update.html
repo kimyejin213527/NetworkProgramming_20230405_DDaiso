@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Update Product{% endblock %}
+{% block title %}Product update{% endblock %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Edit" class="btn btn-primary">
-</form>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Edit">
+        <input type="submit" value="Edit" class="btn btn-primary">
+    </form>
 {% endblock %}
